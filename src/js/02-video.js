@@ -12,4 +12,4 @@ player.on(
   }, 1000),
 );
 
-player.setCurrentTime(localStorage.getItem('vid-time'));
+player.setCurrentTime(localStorage.getItem('vid-time')) ?? 0;

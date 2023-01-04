@@ -5,27 +5,26 @@ const feedbackForm = document.querySelector('.feedback-form');
 
 // додаємо слухача 
 feedbackForm.addEventListener('input', throttle(localData, 500));
-
+const formData = {}
 // знаходімо вхідні дані
-const email = document.querySelector('[name="email"]');
-const message = document.querySelector('[name="message"]');
+// const email = document.querySelector('[name="email"]');
+// const message = document.querySelector('[name="message"]');
 
 //  встановити дані з вхідних даних у локальне сховище
-function localData() {
-  const formData = {
-    email: email.value,
-    message: message.value,
-  };
+function localData(e) {
+  formData[e.target.name] = e.target.value
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
 
 // функція для отримання вхідних даних із локального сховища
 function getLocalData() {
-  let localData = JSON.parse(localStorage.getItem('feedback-form-state'));
-  if (localData !== null) {
-    email.value = localData.email;
-    message.value = localData.message;
-  }
+  let localData = localStorage.getItem('feedback-form-state');
+  const data = JSON.parse(localData);
+
+  Object.entries(data).forEach(([key, value]) => {
+    feedbackForm.elements[key].value = value;
+  });
+  console.log(data);
 }
 
 // запускаємо
