@@ -18,13 +18,3 @@ player.setCurrentTime(getContentOfLocalStorage);
 
 console.log(Player);
 
-
-
-// player.on(
-//   "timeupdate",
-//   throttle(function playTime(e) {
-//     localStorage.setItem("vid-time", e.seconds)
-//   }, 1000),
-// );
-
-// player.setCurrentTime(localStorage.getItem('vid-time')) ?? 0;
